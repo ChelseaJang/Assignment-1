@@ -42,12 +42,12 @@ namespace pic10C {
 		the_data = new typename[capacity];
 	}
 
-	vector::vector(const vector& source): the_data(nullptr), the_size(source.the_size), the_capacity(source.the_capacity) {
+	vector::vector(const vector& source): the_data(nullptr), size(source.size), capacity(source.capacity) {
 
-		the_data = new typename[the_capacity];
+		the_data = new typename[capacity];
 
 		// Deep copy of internal array
-		for (int i = 0; i < the_size; ++i) {
+		for (int i = 0; i < size; ++i) {
 			the_data[i] = source.the_data[i];
 		}
 	}
@@ -56,14 +56,14 @@ namespace pic10C {
 		if (this != &rhs) {     // Self-assignment?
 								// Release old memory and request more 
 			delete[] the_data;
-			the_data = new double[rhs.the_capacity];
+			the_data = new double[rhs.capacity];
 
 			// Shallow copy non-pointers
-			the_size = rhs.the_size;
-			the_capacity = rhs.the_capacity;
+			size = rhs.size;
+			capacity = rhs.capacity;
 
 			// Deep copy internal array
-			for (int i = 0; i < the_size; ++i)
+			for (int i = 0; i < size; ++i)
 				the_data[i] = rhs.the_data[i];
 		}
 		return *this;
@@ -75,15 +75,15 @@ namespace pic10C {
 
 	/** *********************** OTHER MEMBERS *********************** **/
 	bool vector::empty() const {
-		return the_size == 0;
+		return size == 0;
 	}
 
 	size_t vector::size() const {
-		return the_size;
+		return size;
 	}
 
 	size_t vector::capacity() const {
-		return the_capacity;
+		return capacity;
 	}
 
 	double vector::front() const {
@@ -91,11 +91,11 @@ namespace pic10C {
 	}
 
 	double vector::back() const {
-		return *(the_data + the_size - 1);
+		return *(the_data + size - 1);
 	}
 
 	double vector::at(size_t index) const {
-		if (index < the_size)
+		if (index < size)
 			return the_data[index];
 		return the_data[0];
 	}
@@ -109,40 +109,41 @@ namespace pic10C {
 
 	void vector::dump_data_to(std::ostream& out) const {
 		out << "Vector (dump): ";
-		for (size_t i = 0; i < the_capacity; ++i)
+		for (size_t i = 0; i < capacity; ++i)
 			out << the_data[i] << ' ';
 		out << '\n';
 	}
+
 	void vector::dump_data() const {
 		dump_data_to(std::cout);
 	}
 
 
 	void vector::push_back(double new_value) {
-		if (the_size == the_capacity)
-			reserve(the_capacity + 1);     // `the_data` is reassigned
+		if (size == capacity)
+			reserve(capacity + 1);     // `the_data` is reassigned
 
-		the_data[the_size++] = new_value;
+		the_data[size++] = new_value;
 	}
 
 	// This implementation does not shrink the vector (ever)
 	void vector::pop_back() {
-		if (the_size > 0)
-			--the_size;
+		if (size > 0)
+			--size;
 	}
 
 
 	void vector::reserve(size_t new_capacity) {
-		if (new_capacity > the_capacity) {
-			if (new_capacity <= 2 * the_capacity)
-				new_capacity = 2 * the_capacity;
+		if (new_capacity > capacity) {
+			if (new_capacity <= 2 * capacity)
+				new_capacity = 2 * capacity;
 
-			double* old_location = the_data;
+			typename* old_location = the_data;
 
-			the_data = new double[new_capacity];
-			the_capacity = new_capacity;
+			the_data = new typename[new_capacity];
+			capacity = new_capacity;
 
-			for (size_t i = 0; i < the_size; ++i)
+			for (size_t i = 0; i < size; ++i)
 				the_data[i] = old_location[i];
 
 			delete old_location;
