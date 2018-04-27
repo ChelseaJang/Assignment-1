@@ -49,13 +49,27 @@ namespace pic10C {
 		}
 
 
+		/** *********************** OTHER MEMBERS *********************** **/
+		bool empty() const {
+			return size == 0;
+		}
+
+		size_t size() const {
+			return size;
+		}
+
+		size_t capacity() const {
+			return capacity;
+		}
+
+		typename front() const {
+			return *the_data;
+		}
 
 
+		
 
-		// Other members [public]
-		bool empty() const;
-		size_t size() const;
-		size_t capacity() const;
+
 		typename front() const;
 		typename back() const;
 		typename at(size_t index) const;
@@ -71,12 +85,6 @@ namespace pic10C {
 		void reserve(size_t new_capacity);
 
 	}; // end Pic10b::vector
-
-
-
-	vector::~vector() {
-		delete[] the_data;
-	}
 
 	/** *********************** OTHER MEMBERS *********************** **/
 	bool vector::empty() const {
