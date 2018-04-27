@@ -1,6 +1,8 @@
 #ifndef ___MY_VECTOR___
 #define ___MY_VECTOR___
 
+//testing branch...
+
 namespace pic10C {
 	template<typename objectType>
 	class vector {
@@ -10,11 +12,45 @@ namespace pic10C {
 		size_t capacity; // the capacity of vector
 
 	public:
-		// The big 4 
-		vector();
-		vector(const vector&);
-		vector& operator=(const vector&);
-		~vector();
+
+		/** ************************* THE BIG 4 ************************* **/
+		vector() :the_data(nullptr), size(0), capacity(INIT_CAP) {
+			the_data = new typename[capacity];
+		}
+
+		vector(const vector& source) : the_data(nullptr), size(source.size), capacity(source.capacity) {
+			the_data = new typename[capacity];
+
+			// Deep copy of internal array
+			for (int i = 0; i < size; ++i) {
+				the_data[i] = source.the_data[i];
+			}
+		}
+
+		vector& operator=(const vector& rhs) {
+			if (this != &rhs) {     // Self-assignment?
+									// Release old memory and request more 
+				delete[] the_data;
+				the_data = new double[rhs.capacity];
+
+				// Shallow copy non-pointers
+				size = rhs.size;
+				capacity = rhs.capacity;
+
+				// Deep copy internal array
+				for (int i = 0; i < size; ++i)
+					the_data[i] = rhs.the_data[i];
+			}
+			return *this;
+		}
+
+		~vector() {
+			delete[] the_data;
+		}
+
+
+
+
 
 		// Other members [public]
 		bool empty() const;
@@ -37,37 +73,6 @@ namespace pic10C {
 	}; // end Pic10b::vector
 
 
-	/** ************************* THE BIG 4 ************************* **/
-	vector::vector() :the_data(nullptr), size(0), capacity(INIT_CAP) {
-		the_data = new typename[capacity];
-	}
-
-	vector::vector(const vector& source): the_data(nullptr), size(source.size), capacity(source.capacity) {
-
-		the_data = new typename[capacity];
-
-		// Deep copy of internal array
-		for (int i = 0; i < size; ++i) {
-			the_data[i] = source.the_data[i];
-		}
-	}
-
-	vector& vector::operator=(const vector& rhs) {
-		if (this != &rhs) {     // Self-assignment?
-								// Release old memory and request more 
-			delete[] the_data;
-			the_data = new double[rhs.capacity];
-
-			// Shallow copy non-pointers
-			size = rhs.size;
-			capacity = rhs.capacity;
-
-			// Deep copy internal array
-			for (int i = 0; i < size; ++i)
-				the_data[i] = rhs.the_data[i];
-		}
-		return *this;
-	}
 
 	vector::~vector() {
 		delete[] the_data;
