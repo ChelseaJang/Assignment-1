@@ -150,19 +150,19 @@ namespace pic10C {
 		}
 	}
 
-} // end Pic10b namespace
+} // end pic10C namespace
 
 
 
 	  /** ************************ OTHER FUNCTIONS ************************ **/
-	std::ostream& operator<<(std::ostream& out, const Pic10C::vector& v) {
+	std::ostream& operator<<(std::ostream& out, const pic10C::vector& v) {
 		for (size_t i = 0; i < v.size(); ++i)
 			out << v[i] << ' ';
 		return out;
 	}
 
 
-	void print_vector(const Pic10C::vector& v) {
+	void print_vector(const pic10C::vector& v) {
 		if (v.empty())
 			std::cout << "Vector is empty\n";
 		else
