@@ -84,7 +84,6 @@ namespace pic10C {
 		//Other members [private]
 		void reserve(size_t new_capacity);
 
-	}; // end Pic10b::vector
 
 	/** *********************** OTHER MEMBERS *********************** **/
 	bool vector::empty() const {
@@ -162,12 +161,12 @@ namespace pic10C {
 			delete old_location;
 		}
 	}
+	
+	}; // end vector
 
-} // end Pic10b namespace
+} // end Pic10C namespace
 
-
-
-	  /** ************************ OTHER FUNCTIONS ************************ **/
+namespace pic10C{
 	std::ostream& operator<<(std::ostream& out, const Pic10b::vector& v) {
 		for (size_t i = 0; i < v.size(); ++i)
 			out << v[i] << ' ';
