@@ -322,11 +322,11 @@ namespace pic10C{
 		}
 	}
 
-} // end pic10C namespace
 
 
 
 	  /** ************************ OTHER FUNCTIONS ************************ **/
+	//functions outside vector...
 	std::ostream& operator<<(std::ostream& out, const pic10C::vector& v) {
 		for (size_t i = 0; i < v.size(); ++i)
 			out << v[i] << ' ';
@@ -339,6 +339,7 @@ namespace pic10C{
 			std::cout << "Vector is empty\n";
 		else
 			std::cout << "Vector (contents): " << v << '\n';
-}
+	}
+} // end namespace...
 
 #endif
