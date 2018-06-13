@@ -1,5 +1,5 @@
-# Pic10C_Chelsea
-repository for all assignments from the PIC10C class
+# Assignment 1 - Learning how to use github
+I mainly focused on assignment A though I think I will work on assignment B in here later, just for fun...
 
 I had some difficulties figuring how out how to do a merge commit.
 
@@ -11,9 +11,10 @@ I also learned how to delete files, which was a relief because trying to find th
 
 
 **Website for stylizing text:**
+
 https://help.github.com/articles/basic-writing-and-formatting-syntax/
 
-*some explanation of code:*
+***Some explanation of code:***
 
 ```
 bool vector::empty() const {
