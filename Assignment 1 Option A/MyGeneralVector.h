@@ -1,7 +1,7 @@
 #ifndef ___MY_VECTOR___
 #define ___MY_VECTOR___
 
-//testing branch...
+//testing branch (#2)...
 
 namespace pic10C {
 	template<typename objectType>
@@ -179,7 +179,6 @@ namespace pic10C {
 			--size;
 	}
 
-
 	void vector::reserve(size_t new_capacity) {
 		if (new_capacity > capacity) {
 			if (new_capacity <= 2 * capacity)
@@ -213,6 +212,9 @@ namespace pic10C{
 		if (v.empty())
 			std::cout << "Vector is empty\n";
 		else
+			
+			
+			///   THERE ARE REPEATS STARTING HERE THAT NEED TO DISAPPEAR
 =======
 		size_t capacity; // the capacity of vector
 
