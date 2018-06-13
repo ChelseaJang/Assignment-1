@@ -108,4 +108,4 @@ void vector::pop_back() {
 	}
 }
 ```
-This function deletes elements from the back of the vector.
+This function deletes elements from the back of the vector if there are elements to be deleted.
