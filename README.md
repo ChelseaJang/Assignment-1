@@ -102,9 +102,10 @@ This function adds a new object to the back of the vector. It increases the size
 
 ```
 void vector::pop_back() {
-	if (size > 0)
-    delete the_data[size];
+	if (size > 0){
+    		delete the_data[size];
 		--size;
+	}
 }
 ```
 This function deletes elements from the back of the vector.
