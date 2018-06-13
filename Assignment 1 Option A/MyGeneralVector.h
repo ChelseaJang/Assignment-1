@@ -10,6 +10,7 @@ namespace pic10C {
 		objectType *the_data; // should I use a smartpointer?
 		size_t size; // size of vector
 		size_t capacity; // the capacity of vector
+		void reserve(size_t new_capacity);
 
 	public:
 
@@ -61,28 +62,62 @@ namespace pic10C {
 		size_t capacity() const {
 			return capacity;
 		}
-
+		  
+		//////////////////////////////////////
 		typename front() const {
 			return *the_data;
 		}
 
+		typename back() const {
+			return *(the_data + size - 1);
+		}
 
-		
+		typename at(size_t index) const {
+			if (index < size)
+				return the_data[index];
+			return the_data[0];
+		}
+
+		typename& operator[](size_t index) {
+			return the_data[index];
+		}
+
+		typename operator[](size_t index) const {
+			return the_data[index];
+		}
+
+		void dump_data_to(std::ostream& out) const {
+			out << "Vector (dump): ";
+			
+			for (size_t i = 0; i < capacity; ++i)
+			{
+				out << the_data[i] << ' ';
+			}
+			out << '\n';
+		}
+
+		void dump_data() const {
+			dump_data_to(std::cout);
+		}
 
 
-		typename front() const;
-		typename back() const;
-		typename at(size_t index) const;
-		typename& operator[](size_t index);
-		typename operator[](size_t index) const;
-		void dump_data_to(std::ostream& out) const;
-		void dump_data() const;
-		void push_back(typename new_value);
-		void pop_back();
+		void push_back(typename new_value) {
+			if (size == capacity) {
+				reserve(capacity + 1);     // `the_data` is reassigned
+			}
 
-	private:
-		//Other members [private]
-		void reserve(size_t new_capacity);
+			the_data[size++] = new_value;
+		}
+
+		// This implementation does not shrink the vector (ever)
+		void pop_back() {
+			if (size > 0)
+				--size;
+		}
+
+
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	/** *********************** OTHER MEMBERS *********************** **/
@@ -246,63 +281,7 @@ namespace pic10C{
 	}
 
 	/** *********************** OTHER MEMBERS *********************** **/
-	bool vector::empty() const {
-		return size == 0;
-	}
-
-	size_t vector::size() const {
-		return size;
-	}
-
-	size_t vector::capacity() const {
-		return capacity;
-	}
-
-	double vector::front() const {
-		return *the_data;
-	}
-
-	double vector::back() const {
-		return *(the_data + size - 1);
-	}
-
-	double vector::at(size_t index) const {
-		if (index < size)
-			return the_data[index];
-		return the_data[0];
-	}
-
-	double& vector::operator[](size_t index) {
-		return the_data[index];
-	}
-	double vector::operator[](size_t index) const {
-		return the_data[index];
-	}
-
-	void vector::dump_data_to(std::ostream& out) const {
-		out << "Vector (dump): ";
-		for (size_t i = 0; i < capacity; ++i)
-			out << the_data[i] << ' ';
-		out << '\n';
-	}
-
-	void vector::dump_data() const {
-		dump_data_to(std::cout);
-	}
-
-
-	void vector::push_back(double new_value) {
-		if (size == capacity)
-			reserve(capacity + 1);     // `the_data` is reassigned
-
-		the_data[size++] = new_value;
-	}
-
-	// This implementation does not shrink the vector (ever)
-	void vector::pop_back() {
-		if (size > 0)
-			--size;
-	}
+	
 
 
 	void vector::reserve(size_t new_capacity) {
