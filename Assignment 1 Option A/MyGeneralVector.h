@@ -1,20 +1,27 @@
 #ifndef ___MY_VECTOR___
 #define ___MY_VECTOR___
 
-//testing branch...
+//testing branch (#2)...
 
 namespace pic10C {
-	template<typename objectType>
+	
+	/**
+	A vector class that stores values of type T
+	@tparam T the data type stored by class vector
+	*/
+	template<typename T>
 	class vector {
 	private:
-		objectType *the_data; // should I use a smartpointer?
+		T *the_data; // should I use a smartpointer?
 		size_t size; // size of vector
 		size_t capacity; // the capacity of vector
+		void reserve(size_t new_capacity);
 
 	public:
 
+
 	/** ************************* THE BIG 4 ************************* **/
-		vector() :the_data(nullptr), size(0), capacity(INIT_CAP) {
+		vector() : the_data(nullptr), size(0), capacity(INIT_CAP) {
 			the_data = new typename[capacity];
 		}
 	
@@ -51,6 +58,18 @@ namespace pic10C {
 
 
 		/** *********************** OTHER MEMBERS *********************** **/
+
+		size_t capacity; // the capacity of vector
+
+	public:
+		// The big 4 
+		vector();
+		vector(const vector&);
+		vector& operator=(const vector&);
+		~vector();
+
+		// Other members [public]
+
 		bool empty() const;
 		size_t size() const;
 		size_t capacity();
@@ -71,6 +90,7 @@ namespace pic10C {
 
 	/** *********************** OTHER MEMBERS *********************** **/
 	
+
 	bool vector::empty() const {
 		return size == 0;
 	}
@@ -149,17 +169,19 @@ namespace pic10C {
 		}
 	}
 
-} // end pic10C namespace
 
 
 
-  /** ************************ OTHER FUNCTIONS ************************ **/
+
+/** ************************ OTHER FUNCTIONS ************************ **/
+//functions outside vector...
 std::ostream& operator<<(std::ostream& out, const pic10C::vector& v) {
 	for (size_t i = 0; i < v.size(); ++i) {
 		out << v[i] << ' ';
 	}
 	return out;
 }
+
 
 
 void print_vector(const pic10C::vector& v) {
@@ -169,6 +191,9 @@ void print_vector(const pic10C::vector& v) {
 	else {
 		std::cout << "Vector (contents): " << v << '\n';
 	}
-}
+} // end namespace...
 
 #endif
+
+	
+	//I feel done with this merge commit...
