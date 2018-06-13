@@ -17,7 +17,7 @@ https://help.github.com/articles/basic-writing-and-formatting-syntax/
 
 ```
 bool vector::empty() const {
-		return size == 0;
+	return size == 0;
 }
 ```
 For function empty(), the function returns the status of the vector. If it is empty, boolean true is returned. If it has something in it, then boolean false is returned
