@@ -326,19 +326,19 @@ namespace pic10C{
 
 
 
-	  /** ************************ OTHER FUNCTIONS ************************ **/
-	std::ostream& operator<<(std::ostream& out, const pic10C::vector& v) {
-		for (size_t i = 0; i < v.size(); ++i)
-			out << v[i] << ' ';
-		return out;
-	}
+  /** ************************ OTHER FUNCTIONS ************************ **/
+std::ostream& operator<<(std::ostream& out, const pic10C::vector& v) {
+	for (size_t i = 0; i < v.size(); ++i)
+		out << v[i] << ' ';
+	return out;
+}
 
 
-	void print_vector(const pic10C::vector& v) {
-		if (v.empty())
-			std::cout << "Vector is empty\n";
-		else
-			std::cout << "Vector (contents): " << v << '\n';
+void print_vector(const pic10C::vector& v) {
+	if (v.empty())
+		std::cout << "Vector is empty\n";
+	else
+		std::cout << "Vector (contents): " << v << '\n';
 }
 
 #endif
