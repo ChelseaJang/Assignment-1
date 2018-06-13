@@ -4,10 +4,15 @@
 //testing branch (#2)...
 
 namespace pic10C {
-	template<typename objectType>
+	
+	/**
+	A vector class that stores values of type T
+	@tparam T the data type stored by class vector
+	*/
+	template<typename T>
 	class vector {
 	private:
-		objectType *the_data; // should I use a smartpointer?
+		T *the_data; // should I use a smartpointer?
 		size_t size; // size of vector
 		size_t capacity; // the capacity of vector
 		void reserve(size_t new_capacity);
@@ -15,7 +20,7 @@ namespace pic10C {
 	public:
 
 		/** ************************* THE BIG 4 ************************* **/
-		vector() :the_data(nullptr), size(0), capacity(INIT_CAP) {
+		vector() : the_data(nullptr), size(0), capacity(INIT_CAP) {
 			the_data = new typename[capacity];
 		}
 
