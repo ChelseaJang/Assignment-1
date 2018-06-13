@@ -143,10 +143,11 @@ namespace pic10C {
 		the_data[size++] = new_value;
 	}
 
-	// This implementation does not shrink the vector (ever)
 	void vector::pop_back() {
-		if (size > 0)
+		if (size > 0) {
+    			delete the_data[size];
 			--size;
+		}
 	}
 
 
